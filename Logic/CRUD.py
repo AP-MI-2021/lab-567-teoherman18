@@ -1,6 +1,7 @@
 from Domain.librarie import creeaza_vanzarea, get_id
 
 
+#4.1
 def adauga_vanzare(id, titlu, gen, pret, reducere, lista):
     """
     Adauga o vanzare intr-o lista.
