@@ -1,6 +1,6 @@
 from Domain.librarie import to_string
 from Logic.CRUD import adauga_vanzare, sterge_vanzare, modifica_vanzare
-from Logic.Functionalitati import aplicare_discount
+from Logic.Functionalitati import aplicare_discount, modificare_gen
 
 
 def print_menu():
@@ -8,6 +8,7 @@ def print_menu():
     print("2. Stergere vanzare")
     print("3. Modificare vanzare")
     print("4. Aplica discount in functie de reducerea clientului")
+    print("5. Modificare gen")
     print("a. Afisare vanzari")
     print("x. Iesire")
 
@@ -44,6 +45,11 @@ def ui_aplicare_discount(lista):
     return aplicare_discount(lista)
 
 
+def ui_modificare_gen(lista):
+    titlu_dat = input("Dati titlul cartii a carui gen vreti sa se modifice: ")
+    return modificare_gen(titlu_dat, lista)
+
+
 def run_menu(lista):
     while True:
         print_menu()
@@ -56,6 +62,8 @@ def run_menu(lista):
             lista = ui_modifica_vanzare(lista)
         elif optiune == "4":
             lista = ui_aplicare_discount(lista)
+        elif optiune == "5":
+            lista = ui_modificare_gen(lista)
         elif optiune == "a":
             show_all(lista)
         elif optiune == "x":
