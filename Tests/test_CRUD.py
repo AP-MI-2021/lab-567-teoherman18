@@ -26,5 +26,3 @@ def test_sterge_vanzare():
 
 def test_modofica_vanzare():
     pass
-
-

@@ -1,11 +1,13 @@
 from Domain.librarie import to_string
 from Logic.CRUD import adauga_vanzare, sterge_vanzare, modifica_vanzare
+from Logic.Functionalitati import aplicare_discount
 
 
 def print_menu():
     print("1. Adaugare vanzare")
     print("2. Stergere vanzare")
     print("3. Modificare vanzare")
+    print("4. Aplica discount in functie de reducerea clientului")
     print("a. Afisare vanzari")
     print("x. Iesire")
 
@@ -38,6 +40,10 @@ def show_all(lista):
         print(to_string(vanzare))
 
 
+def ui_aplicare_discount(lista):
+    return aplicare_discount(lista)
+
+
 def run_menu(lista):
     while True:
         print_menu()
@@ -48,6 +54,8 @@ def run_menu(lista):
             lista = ui_sterge_vanzare(lista)
         elif optiune == "3":
             lista = ui_modifica_vanzare(lista)
+        elif optiune == "4":
+            lista = ui_aplicare_discount(lista)
         elif optiune == "a":
             show_all(lista)
         elif optiune == "x":

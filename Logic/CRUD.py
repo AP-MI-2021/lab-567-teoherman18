@@ -58,4 +58,3 @@ def modifica_vanzare(id, titlu, gen, pret, reducere, lista):
         else:
             lista_noua.append(vanzare)
     return lista_noua
-
