@@ -2,9 +2,6 @@ from Domain.librarie import get_reducere, creeaza_vanzarea, get_id, get_titlu, g
 
 
 # 4.2
-from Logic.CRUD import modifica_vanzare
-
-
 def aplicare_discount(lista):
     """
     Aplica un discount de 5% pentru toate reducerile silver și 10% pentru toate reducerile gold.
@@ -36,18 +33,12 @@ def aplicare_discount(lista):
     return lista_noua
 
 
-# 4.3
-def modificare_gen(titlu_dat, lista):
+# 4.5
+def ordine_crescatoare(lista):
     """
-    Modifica genul pentru un titlu dat.
-    :param titlu_dat: string
-    :param lista: lista de vanzari
-    :return: noua lista de vanzari, modificata
+    Ordoneaza vânzările crescător după preț.
+    :param lista: lista vanzarilor
+    :return: lista vanzarilor ordonata crescator dupa pret
     """
-    for vanzare in lista:
-        if get_titlu(vanzare) == titlu_dat:
-            gen = input("Dati noul gen: ") # la asta mai am de lucrat
-    titlu = get_titlu(vanzare)
-    pret = get_pret(vanzare)
-    reducere = get_reducere(vanzare)
-    return modifica_vanzare(id, titlu, gen, pret, reducere, lista)
+    lista_noua = sorted(lista, key=lambda i: i["pret"])
+    return lista_noua
