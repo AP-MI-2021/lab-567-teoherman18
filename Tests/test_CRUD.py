@@ -1,5 +1,5 @@
 from Domain.librarie import get_id, get_titlu, get_gen, get_pret, get_reducere
-from Logic.CRUD import adauga_vanzare, get_by_id, sterge_vanzare
+from Logic.CRUD import adauga_vanzare, get_by_id, sterge_vanzare, modifica_vanzare
 
 
 def test_adauga_vanzare():
@@ -24,5 +24,18 @@ def test_sterge_vanzare():
     assert get_by_id("2", lista) is not None
 
 
-def test_modofica_vanzare():
-    pass
+def test_modifica_vanzare():
+    lista = []
+    lista = adauga_vanzare("1", "Viata lui Pi", "Aventura", 20, "None", lista)
+    lista = adauga_vanzare("2", "Atingerea", "Fantasy", 30, "Silver", lista)
+
+    lista = modifica_vanzare("1", "Viata lui Pi", "Aventura", 40, "Gold", lista)
+
+    assert get_titlu(get_by_id("1", lista)) == "Viata lui Pi"
+    assert get_gen(get_by_id("1", lista)) == "Aventura"
+    assert get_pret(get_by_id("1", lista)) == 40
+    assert get_reducere(get_by_id("1", lista)) == "Gold"
+    assert get_titlu(get_by_id("2", lista)) == "Atingerea"
+    assert get_gen(get_by_id("2", lista)) == "Fantasy"
+    assert get_pret(get_by_id("2", lista)) == 30
+    assert get_reducere(get_by_id("2", lista)) == "Silver"
