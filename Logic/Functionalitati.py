@@ -33,12 +33,5 @@ def aplicare_discount(lista):
     return lista_noua
 
 
-# 4.5
-def ordine_crescatoare(lista):
-    """
-    Ordoneaza vânzările crescător după preț.
-    :param lista: lista vanzarilor
-    :return: lista vanzarilor ordonata crescator dupa pret
-    """
-    lista_noua = sorted(lista, key=lambda i: i["pret"])
-    return lista_noua
+
+
