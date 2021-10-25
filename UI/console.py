@@ -1,6 +1,6 @@
 from Domain.librarie import to_string
 from Logic.CRUD import adauga_vanzare, sterge_vanzare, modifica_vanzare
-from Logic.Functionalitati import aplicare_discount
+from Logic.Functionalitati import aplicare_discount, ordine_crescatoare
 
 
 def print_menu():
@@ -43,6 +43,10 @@ def show_all(lista):
 
 def ui_aplicare_discount(lista):
     return aplicare_discount(lista)
+
+
+def ui_ordine_crescatoare(lista):
+    return ordine_crescatoare(lista)
 
 
 def run_menu(lista):
