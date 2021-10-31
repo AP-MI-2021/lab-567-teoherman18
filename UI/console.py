@@ -16,26 +16,38 @@ def print_menu():
 
 
 def ui_adauga_vanzare(lista):
-    id = input("Dati id-ul: ")
-    titlu = input("Dati titul cartii: ")
-    gen = input("Dati genul cartii: ")
-    pret = float(input("Dati pretul cartii: "))
-    reducere = input("Ce fel de reducere a avut clientul? ")
-    return adauga_vanzare(id, titlu, gen, pret, reducere, lista)
+    try:
+        id = input("Dati id-ul: ")
+        titlu = input("Dati titul cartii: ")
+        gen = input("Dati genul cartii: ")
+        pret = float(input("Dati pretul cartii: "))
+        reducere = input("Ce fel de reducere a avut clientul? ")
+        return adauga_vanzare(id, titlu, gen, pret, reducere, lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 
 def ui_sterge_vanzare(lista):
-    id = input("Dati id-ul vanzarii de sters: ")
-    return sterge_vanzare(id, lista)
+    try:
+        id = input("Dati id-ul vanzarii de sters: ")
+        return sterge_vanzare(id, lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 
 def ui_modifica_vanzare(lista):
-    id = input("Dati id-ul vanzarii de modificat: ")
-    titlu = input("Dati noul titu: ")
-    gen = input("Dati noul gen: ")
-    pret = float(input("Dati noul pret: "))
-    reducere = input("Dati noul tip de reducere: ")
-    return modifica_vanzare(id, titlu, gen, pret, reducere, lista)
+    try:
+        id = input("Dati id-ul vanzarii de modificat: ")
+        titlu = input("Dati noul titu: ")
+        gen = input("Dati noul gen: ")
+        pret = float(input("Dati noul pret: "))
+        reducere = input("Dati noul tip de reducere: ")
+        return modifica_vanzare(id, titlu, gen, pret, reducere, lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 
 def show_all(lista):

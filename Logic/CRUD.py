@@ -13,6 +13,8 @@ def adauga_vanzare(id, titlu, gen, pret, reducere, lista):
     :param lista: lista de vanzari
     :return: o lista continand atat elementele vechi, cat si noua vanzare
     """
+    if get_by_id(id, lista) is not None:
+        raise ValueError("Id-ul exista deja!")
     vanzare = creeaza_vanzarea(id, titlu, gen, pret, reducere)
     return lista + [vanzare]
 
@@ -37,6 +39,8 @@ def sterge_vanzare(id, lista):
     :param lista: lista de vanzari
     :return: lista de vanzari
     """
+    if get_by_id(id, lista) is None:
+        raise ValueError("Nu exista o vanzare cu id-ul dat!")
     return [vanzare for vanzare in lista if get_id(vanzare) != id]
 
 
@@ -51,6 +55,8 @@ def modifica_vanzare(id, titlu, gen, pret, reducere, lista):
     :param lista: lista de vanzari
     :return:
     """
+    if get_by_id(id, lista) is None:
+        raise ValueError("Nu exista o vanzare cu id-ul dat!")
     lista_noua = []
     for vanzare in lista:
         if get_id(vanzare) == id:
