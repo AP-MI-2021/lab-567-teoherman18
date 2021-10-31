@@ -32,4 +32,3 @@ def test_pret_minim():
     assert len(rezultat) == 2
     assert rezultat["Fictiune"] == 25.50
     assert rezultat["Comedie"] == 15
-

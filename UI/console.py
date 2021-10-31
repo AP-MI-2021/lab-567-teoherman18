@@ -8,7 +8,7 @@ def print_menu():
     print("2. Stergere vanzare")
     print("3. Modificare vanzare")
     print("4. Aplica discount in functie de reducerea clientului")
-    print("5. Modifica genul pentru un titlu dat")
+    # print("5. Modifica genul pentru un titlu dat")
     print("6. Determina pretul minim pentru fiecare gen")
     print("7. Ordoneaza crescator dupa pret")
     print("a. Afisare vanzari")
@@ -52,9 +52,9 @@ def ui_ordine_crescatoare(lista):
 
 
 def ui_pret_minim(lista):
-    rezulta = pret_minim(lista)
-    for gen in rezulta:
-        print("Pretul minim pentru genul {} este {}".format(gen, rezulta[gen]))
+    rezultat = pret_minim(lista)
+    for gen in rezultat:
+        print("Pretul minim pentru genul {} este {}".format(gen, rezultat[gen]))
 
 
 def run_menu(lista):
