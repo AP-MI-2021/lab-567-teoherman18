@@ -1,6 +1,6 @@
 from Domain.librarie import to_string
 from Logic.CRUD import adauga_vanzare, sterge_vanzare, modifica_vanzare
-from Logic.Functionalitati import aplicare_discount, ordine_crescatoare
+from Logic.Functionalitati import aplicare_discount, ordine_crescatoare, pret_minim
 
 
 def print_menu():
@@ -8,7 +8,9 @@ def print_menu():
     print("2. Stergere vanzare")
     print("3. Modificare vanzare")
     print("4. Aplica discount in functie de reducerea clientului")
-    print("5. Ordoneaza crescator dupa pret")
+    print("5. Modifica genul pentru un titlu dat")
+    print("6. Determina pretul minim pentru fiecare gen")
+    print("7. Ordoneaza crescator dupa pret")
     print("a. Afisare vanzari")
     print("x. Iesire")
 
@@ -42,11 +44,17 @@ def show_all(lista):
 
 
 def ui_aplicare_discount(lista):
-    return aplicare_discount(lista)
+    return show_all(aplicare_discount(lista))
 
 
 def ui_ordine_crescatoare(lista):
-    return ordine_crescatoare(lista)
+    return show_all(ordine_crescatoare(lista))
+
+
+def ui_pret_minim(lista):
+    rezulta = pret_minim(lista)
+    for gen in rezulta:
+        print("Pretul minim pentru genul {} este {}".format(gen, rezulta[gen]))
 
 
 def run_menu(lista):
@@ -60,7 +68,11 @@ def run_menu(lista):
         elif optiune == "3":
             lista = ui_modifica_vanzare(lista)
         elif optiune == "4":
-            lista = ui_aplicare_discount(lista)
+            ui_aplicare_discount(lista)
+        elif optiune == "6":
+            ui_pret_minim(lista)
+        elif optiune == "7":
+            ui_ordine_crescatoare(lista)
         elif optiune == "a":
             show_all(lista)
         elif optiune == "x":

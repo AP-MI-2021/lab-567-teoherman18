@@ -33,6 +33,25 @@ def aplicare_discount(lista):
     return lista_noua
 
 
+# 4.4
+def pret_minim(lista):
+    """
+    Determina prețului minim pentru fiecare gen
+    :param lista: lista vanzarilor
+    :return: pretul minim pentru fiecare gen
+    """
+    rezultat = {}
+    for vanzare in lista:
+        gen = get_gen(vanzare)
+        pret = get_pret(vanzare)
+        if gen in rezultat:
+            if pret < rezultat[gen]:
+                rezultat[gen] = pret
+        else:
+            rezultat[gen] = pret
+    return rezultat
+
+
 # 4.5
 def ordine_crescatoare(lista):
     """
@@ -40,5 +59,5 @@ def ordine_crescatoare(lista):
     :param lista: lista vanzarilor
     :return: lista vanzarilor ordonata crescator dupa pret
     """
-    lista_noua = sorted(lista, key=lambda i: get_pret(i))
+    lista_noua = sorted(lista, key=lambda vanzare: get_pret(vanzare))
     return lista_noua
