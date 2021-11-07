@@ -8,7 +8,15 @@ def creeaza_vanzarea(id, titlu, gen, pret, reducere):
     :param reducere: string
     :return: O lista ce contine o vanzare.
     """
-    return [str(id), str(titlu), str(gen), pret, str(reducere)]
+    # return [str(id), str(titlu), str(gen), pret, str(reducere)]
+
+    return {
+        "id": id,
+        "titlu": titlu,
+        "gen": gen,
+        "pret": pret,
+        "reducere": reducere
+    }
 
 
 def get_id(vanzare):
@@ -17,8 +25,8 @@ def get_id(vanzare):
     :param vanzare: dictionar ce contine o vanzare
     :return: id-ul vanzarii
     """
-    # return vanzare["id"]
-    return vanzare[0]
+    return vanzare["id"]
+    # return vanzare[0]
 
 
 def get_titlu(vanzare):
@@ -27,8 +35,9 @@ def get_titlu(vanzare):
     :param vanzare: dictionar ce contine o vanzare
     :return: titlul cartii
     """
-    # return vanzare["titlu"]
-    return vanzare[1]
+
+    return vanzare["titlu"]
+    # return vanzare[1]
 
 
 def get_gen(vanzare):
@@ -37,8 +46,8 @@ def get_gen(vanzare):
     :param vanzare: dictionar ce contine o vanzare
     :return: genul cartii
     """
-    # return vanzare["gen"]
-    return vanzare[2]
+    return vanzare["gen"]
+    # return vanzare[2]
 
 
 def get_pret(vanzare):
@@ -47,8 +56,8 @@ def get_pret(vanzare):
     :param vanzare: dictionar ce contine o vanzare
     :return: pretul cartii
     """
-    # return vanzare["pret"]
-    return vanzare[3]
+    return vanzare["pret"]
+    # return vanzare[3]
 
 
 def get_reducere(vanzare):
@@ -57,8 +66,8 @@ def get_reducere(vanzare):
     :param vanzare: dictionar ce contine o vanzare
     :return: tipul reducerii
     """
-    # return vanzare["reducere"]
-    return vanzare[4]
+    return vanzare["reducere"]
+    # return vanzare[4]
 
 
 def to_string(vanzare):
@@ -69,7 +78,3 @@ def to_string(vanzare):
         get_pret(vanzare),
         get_reducere(vanzare)
     )
-
-
-def set_gen(vanzare, gen_nou):
-    vanzare[2] = gen_nou

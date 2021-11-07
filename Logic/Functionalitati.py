@@ -1,4 +1,4 @@
-from Domain.librarie import get_reducere, creeaza_vanzarea, get_id, get_titlu, get_gen, get_pret, set_gen
+from Domain.librarie import get_reducere, creeaza_vanzarea, get_id, get_titlu, get_gen, get_pret
 
 
 # 4.2
@@ -72,9 +72,20 @@ def modifica_genul(lista, titlu, gen_nou):
     :param gen_nou: noul gen al cartii
     :return: lista vanzarilor cu genul cartii modificat
     """
+    lista_noua = []
     for vanzare in lista:
         if get_titlu(vanzare) == titlu:
-            set_gen(vanzare, gen_nou)
+            vanzare_noua = creeaza_vanzarea(
+                get_id(vanzare),
+                get_titlu(vanzare),
+                gen_nou,
+                get_pret(vanzare),
+                get_reducere(vanzare)
+            )
+            lista_noua.append(vanzare_noua)
+        else:
+            lista_noua.append(vanzare)
+    return lista_noua
 
 
 # 4.6

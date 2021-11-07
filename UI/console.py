@@ -71,7 +71,7 @@ def ui_pret_minim(lista):
 
 
 def ui_modifica_genul(lista):
-    titlu = input("Introduceti titlul cartii ca carei gen doriti sa il modificati: ")
+    titlu = input("Introduceti titlul cartii al carei gen doriti sa il modificati: ")
     gen_nou = input("Introduceti noul gen: ")
     modifica_genul(titlu, gen_nou, lista)
 
