@@ -1,6 +1,6 @@
-from Domain.librarie import get_pret
+from Domain.librarie import get_pret, get_gen
 from Logic.CRUD import adauga_vanzare, get_by_id
-from Logic.Functionalitati import aplicare_discount, ordine_crescatoare, pret_minim, titluri_distincte
+from Logic.Functionalitati import aplicare_discount, ordine_crescatoare, pret_minim, titluri_distincte, modifica_genul
 
 
 def test_aplicare_discount():
@@ -45,3 +45,12 @@ def test_titluri_distincte():
     lista = adauga_vanzare("7", "Harry Potter", "Fictiune", 30, "Silver", lista)
     lista = adauga_vanzare("8", "O scrisoare pieduta", "Comedie", 15, "Gold", lista)
     assert titluri_distincte(lista) == [("Realist", 1), ("Fictiune", 2), ("Comedie", 1)]
+
+
+def test_modifica_genul():
+    lista = []
+    lista = adauga_vanzare("1", "Ion", "Fictiune", 25.50, "None", lista)
+    lista = adauga_vanzare("2", "Harry Potter", "Fictiune", 30, "Silver", lista)
+    lista = adauga_vanzare("3", "O scrisoare pieduta", "Comedie", 15, "Gold", lista)
+    lista = modifica_genul("Ion", "Realist", lista)
+    assert get_gen(get_by_id("1", lista)) == "Realist"

@@ -64,7 +64,7 @@ def ordine_crescatoare(lista):
 
 
 # 4.3
-def modifica_genul(lista, titlu, gen_nou):
+def modifica_genul(titlu, gen_nou, lista):
     """
     Modifica genul pentru un titlu dat.
     :param lista: lista vanzarilor

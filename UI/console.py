@@ -73,7 +73,7 @@ def ui_pret_minim(lista):
 def ui_modifica_genul(lista):
     titlu = input("Introduceti titlul cartii al carei gen doriti sa il modificati: ")
     gen_nou = input("Introduceti noul gen: ")
-    modifica_genul(titlu, gen_nou, lista)
+    return modifica_genul(titlu, gen_nou, lista)
 
 
 def ui_titluri_distincte(lista):
@@ -95,7 +95,7 @@ def run_menu(lista):
         elif optiune == "4":
             ui_aplicare_discount(lista)
         elif optiune == "5":
-            ui_modifica_genul(lista)
+            lista = ui_modifica_genul(lista)
         elif optiune == "6":
             ui_pret_minim(lista)
         elif optiune == "7":
