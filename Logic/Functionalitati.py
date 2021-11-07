@@ -1,4 +1,4 @@
-from Domain.librarie import get_reducere, creeaza_vanzarea, get_id, get_titlu, get_gen, get_pret
+from Domain.librarie import get_reducere, creeaza_vanzarea, get_id, get_titlu, get_gen, get_pret, set_gen
 
 
 # 4.2
@@ -61,3 +61,33 @@ def ordine_crescatoare(lista):
     """
     lista_noua = sorted(lista, key=lambda vanzare: get_pret(vanzare))
     return lista_noua
+
+
+# 4.3
+def modifica_genul(lista, titlu, gen_nou):
+    """
+    Modifica genul pentru un titlu dat.
+    :param lista: lista vanzarilor
+    :param titlu: titlul cartii al carei gen trebuie modificat
+    :param gen_nou: noul gen al cartii
+    :return: lista vanzarilor cu genul cartii modificat
+    """
+    for vanzare in lista:
+        if get_titlu(vanzare) == titlu:
+            set_gen(vanzare, gen_nou)
+
+
+# 4.6
+def titluri_distincte(lista):
+    """
+    Afișeaza numărul de titluri distincte pentru fiecare gen.
+    :param lista: lista vanzarilor
+    :return: numarul de titluri distincte pentru fiecare gen
+    """
+    rezultat = dict()
+    for vanzare in lista:
+        if get_gen(vanzare) not in rezultat:
+            rezultat[get_gen(vanzare)] = {get_titlu(vanzare)}
+        else:
+            rezultat[get_gen(vanzare)].add(get_titlu(vanzare))
+    return [(gen, len(titluri)) for gen, titluri in rezultat.items()]

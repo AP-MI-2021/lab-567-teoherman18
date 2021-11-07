@@ -69,3 +69,7 @@ def to_string(vanzare):
         get_pret(vanzare),
         get_reducere(vanzare)
     )
+
+
+def set_gen(vanzare, gen_nou):
+    vanzare[2] = gen_nou
