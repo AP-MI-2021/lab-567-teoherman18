@@ -12,40 +12,51 @@ def print_menu():
     print("6. Determina pretul minim pentru fiecare gen")
     print("7. Ordoneaza crescator dupa pret")
     print("8. Afișeaza numărul de titluri distincte pentru fiecare gen.")
+    print("u. Undo")
+    print("r. Redo")
     print("a. Afisare vanzari")
     print("x. Iesire")
 
 
-def ui_adauga_vanzare(lista):
+def ui_adauga_vanzare(lista, undo_list, redo_list):
     try:
         id = input("Dati id-ul: ")
         titlu = input("Dati titul cartii: ")
         gen = input("Dati genul cartii: ")
         pret = float(input("Dati pretul cartii: "))
         reducere = input("Ce fel de reducere a avut clientul? ")
-        return adauga_vanzare(id, titlu, gen, pret, reducere, lista)
+        rezultat = adauga_vanzare(id, titlu, gen, pret, reducere, lista)
+        undo_list.append(lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
 
-def ui_sterge_vanzare(lista):
+def ui_sterge_vanzare(lista, undo_list, redo_list):
     try:
         id = input("Dati id-ul vanzarii de sters: ")
-        return sterge_vanzare(id, lista)
+        rezultat = sterge_vanzare(id, lista)
+        undo_list.append(lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
 
-def ui_modifica_vanzare(lista):
+def ui_modifica_vanzare(lista, undo_list, redo_list):
     try:
         id = input("Dati id-ul vanzarii de modificat: ")
         titlu = input("Dati noul titu: ")
         gen = input("Dati noul gen: ")
         pret = float(input("Dati noul pret: "))
         reducere = input("Dati noul tip de reducere: ")
-        return modifica_vanzare(id, titlu, gen, pret, reducere, lista)
+        rezultat = modifica_vanzare(id, titlu, gen, pret, reducere, lista)
+        undo_list.append(lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
@@ -56,12 +67,18 @@ def show_all(lista):
         print(to_string(vanzare))
 
 
-def ui_aplicare_discount(lista):
-    return show_all(aplicare_discount(lista))
+def ui_aplicare_discount(lista, undo_list, redo_list):
+    rezultat = aplicare_discount(lista)
+    undo_list.append(lista)
+    redo_list.clear()
+    return rezultat
 
 
-def ui_ordine_crescatoare(lista):
-    return show_all(ordine_crescatoare(lista))
+def ui_ordine_crescatoare(lista, undo_list, redo_list):
+    rezultat = ordine_crescatoare(lista)
+    undo_list.append(lista)
+    redo_list.clear()
+    return rezultat
 
 
 def ui_pret_minim(lista):
@@ -70,10 +87,13 @@ def ui_pret_minim(lista):
         print("Pretul minim pentru genul {} este {}".format(gen, rezultat[gen]))
 
 
-def ui_modifica_genul(lista):
+def ui_modifica_genul(lista, undo_list, redo_list):
     titlu = input("Introduceti titlul cartii al carei gen doriti sa il modificati: ")
     gen_nou = input("Introduceti noul gen: ")
-    return modifica_genul(titlu, gen_nou, lista)
+    rezultat = modifica_genul(titlu, gen_nou, lista)
+    undo_list.append(lista)
+    redo_list.clear()
+    return rezultat
 
 
 def ui_titluri_distincte(lista):
@@ -83,25 +103,39 @@ def ui_titluri_distincte(lista):
 
 
 def run_menu(lista):
+    undo_list = []
+    redo_list = []
     while True:
         print_menu()
         optiune = input("Dati optiunea: ")
         if optiune == "1":
-            lista = ui_adauga_vanzare(lista)
+            lista = ui_adauga_vanzare(lista, undo_list, redo_list)
         elif optiune == "2":
-            lista = ui_sterge_vanzare(lista)
+            lista = ui_sterge_vanzare(lista, undo_list, redo_list)
         elif optiune == "3":
-            lista = ui_modifica_vanzare(lista)
+            lista = ui_modifica_vanzare(lista, undo_list, redo_list)
         elif optiune == "4":
-            ui_aplicare_discount(lista)
+            lista = ui_aplicare_discount(lista, undo_list, redo_list)
         elif optiune == "5":
-            lista = ui_modifica_genul(lista)
+            lista = ui_modifica_genul(lista, undo_list, redo_list)
         elif optiune == "6":
             ui_pret_minim(lista)
         elif optiune == "7":
-            ui_ordine_crescatoare(lista)
+            lista = ui_ordine_crescatoare(lista, undo_list, redo_list)
         elif optiune == "8":
             ui_titluri_distincte(lista)
+        elif optiune == "u":
+            if len(undo_list) > 0:
+                redo_list.append(lista)
+                lista = undo_list.pop()
+            else:
+                print("Nu se poate face undo!")
+        elif optiune == "r":
+            if len(redo_list) > 0:
+                undo_list.append(lista)
+                lista = redo_list.pop()
+            else:
+                print("Nu se poate face redo!")
         elif optiune == "a":
             show_all(lista)
         elif optiune == "x":

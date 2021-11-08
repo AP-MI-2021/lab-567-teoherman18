@@ -6,6 +6,7 @@ from UI.console import run_menu
 def print_choose_ui():
     print("1. Console")
     print("2. Command line (functionalitati limitate)")
+    print("x. Iesire")
 
 
 def main():
@@ -18,6 +19,8 @@ def main():
             run_menu(lista)
         elif optiune == "2":
             run_console(lista)
+        elif optiune == "x":
+            break
         else:
             print("Optiune invalida!")
 
