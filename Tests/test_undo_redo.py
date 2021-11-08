@@ -3,6 +3,7 @@ from Logic.CRUD import adauga_vanzare
 
 
 def test_undo_redo():
+    # 1. lista goala
     lista = []
     undo_list = []
     redo_list = []
@@ -22,17 +23,12 @@ def test_undo_redo():
     undo_list.append(lista)
     lista = rezultat
 
-    assert get_id(lista[0]) == "1"
-    assert get_id(lista[1]) == "2"
-    assert get_id(lista[2]) == "3"
-
     # 5. primul undo scoate ultima vanzare adaugata
     redo_list.append(lista)
     lista = undo_list.pop()
     assert len(lista) == 2
     assert get_id(lista[1]) == "2"
     assert get_id(lista[0]) == "1"
-    # assert undo_list == [[], [['1', "Ion", "Realist", 20.0, "None"]]]
 
     # 6. inca un undo scoate penultima vanzare adaugata
     redo_list.append(lista)
@@ -86,7 +82,6 @@ def test_undo_redo():
     assert len(lista) == 2
     assert get_id(lista[1]) == "2"
     assert get_id(lista[0]) == "1"
-    # assert undo_list == [[], [["1", "Ion", "Realist", 20.0, "None"]]]
 
     redo_list.append(lista)
     lista = undo_list.pop()
@@ -114,7 +109,6 @@ def test_undo_redo():
     assert len(lista) == 2
     assert get_id(lista[1]) == "2"
     assert get_id(lista[0]) == "1"
-    # assert undo_list == [[], [["1", "Ion", "Realist", 20.0, "None"]]]
 
     redo_list.append(lista)
     lista = undo_list.pop()
@@ -134,7 +128,6 @@ def test_undo_redo():
         lista = redo_list.pop()
     assert len(lista) == 2
     assert len(undo_list) == 2
-    # assert undo_list == [[], [["1", "Ion", "Realist", 20.0, "None"]]]
 
     # 17. se face undo
     redo_list.append(lista)
